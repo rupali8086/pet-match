@@ -18,6 +18,10 @@ var passport   = require('passport');
 var session    = require('express-session');
 var bodyParser = require('body-parser');
 
+
+var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
+
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
@@ -30,7 +34,6 @@ app.use(express.json());
 
  
 app.use(session({
-    store: new FileStore(options),
     secret: 'keyboard cat',
     resave: true, saveUninitialized:true
 }));
