@@ -1,1 +1,69 @@
-<p>This page is for the creation of new event entries.</p>
+<!-- <p>This page is for the creation of new event entries.</p> !-->
+{{!-- date: { address1: { address2: { city: { state: { zip: { description: { link: { --}}
+
+
+<h1>Add an Event</h1>
+<ul>
+    {{#each events}}
+    <li>
+        <p>
+            {{this.id}}. {{this.event}}
+            <button data-eventid="{{this.id}}" class="delEvent">Delete</button>
+        </p>
+    </li>
+    {{/each}}
+</ul>
+<h2></h2>
+{{#if logged}}
+<form id="addEvent" class="button-size">
+    <label for="event-input-name">
+        <p>Name</p>
+        <input type="input" id="event-input-name">
+    </label>
+    <label for="event-input-datetime">
+        <p>Date and time</p>
+        <input type="datetime-local" id="event-input-datetime" value="{{now}}">
+    </label>
+    <label for="event-input-address1">
+        <p>Address</p>
+        <input type="input" id="event-input-address1">
+        <p>
+            <input type="input" id="event-input-address2">
+        </p>
+    </label>
+    <label for="event-input-city">
+        <p>City</p>
+        <input type="input" id="event-input-city">
+    </label>
+    <label for="event-input-state">
+        <p>State</p>
+        <input type="input" id="event-input-state">
+    </label>
+    <label for="event-input-zip">
+        <p>ZIP</p>
+        <input type="input" id="event-input-zip">
+    </label>
+    <label for="event-input-link">
+        <p>External link or contact (mailto:)</p>
+        <input type="input" id="event-input-link">
+    </label>
+    <label for="event-input-description">
+        <p>Description</p>
+        <textarea type="text" id="event-input-description"></textarea>
+    </label>
+
+    <button type="submit" id="event-input-submit">Save Event</button>
+</form>
+{{else}}
+<p>You need to be logged in to create an event listing.</p>
+<p>
+    <a href="/login">Log in</a>
+</p>
+{{/if}}
+
+<h2>Update Event</h2>
+<form id="updateEvent" class="button-size">
+    <input type="text" name="id" placeholder="id">
+    <textarea type="text" name="event"></textarea>
+    <button type="submit">Event</button>
+</form>

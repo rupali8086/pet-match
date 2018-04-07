@@ -32,18 +32,25 @@ module.exports = function(passport) {
 	    				return done(err);
 	    			if(user)
 	    				return done(null, User);
-	    			else {
-	    				var newUser = new User();
-	    				newUser.facebook.id = profile.id;
-	    				newUser.facebook.token = accessToken;
-	    				newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-	    				newUser.facebook.email = profile.emails[0].value;
-	    				newUser.save(function(err){
-	    					if(err)
-	    						throw err;
-	    					return done(null, newUser);
-	    				})
-	    				console.log(profile);
+	    			else 
+	    			{
+
+	    				// mongo db
+	    				// var newUser = new User();
+	    				// newUser.facebook.id = profile.id;
+	    				// newUser.facebook.token = accessToken;
+	    				// newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+	    				// newUser.facebook.email = profile.emails[0].value;
+	    				// newUser.save(function(err){
+	    				// 	if(err)
+	    				// 		throw err;
+	    				// 	return done(null, newUser);
+	    				// })
+	    				// console.log(profile);
+
+	    				// Mysql
+
+	    				
 	    			}
 	    		});
 	    	});

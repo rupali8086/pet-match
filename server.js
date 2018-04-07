@@ -1,6 +1,9 @@
 //// Modules /////////////////////////////////////////
 var express = require('express');
+var fs = require('fs');
+var rimraf = require('rimraf');
 var dotenv = require('dotenv').config();
+var path = require('path');
 var handlebars = require('express-handlebars');
 var httpRoutes = require('./routes/httpRoutes');
 var apiRoutes = require('./routes/apiRoutes');
@@ -18,9 +21,16 @@ var cookieParser = require('cookie-parser');
 
 //// Configure Application ///////////////////////////
 
+// For dev, our DB is wiped each time the app launches. We
+// don't want old sessions referencing non-existant records.
+try {
+    rimraf.sync(path.join(__dirname, 'sessions'));
+} catch (e) {
+    // HOPE NOTHING GOES WRONG!
+}
+
 var PORT = process.env.PORT || 8080;
 var app = express();
-
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser');
@@ -35,11 +45,13 @@ app.use(express.json());
 
 // from session file store
 
-
+var sessionStore = new FileStore();
+// sessionStore.clear();
 app.use(session({
-    store: new FileStore(),
+    store: sessionStore,
     secret: 'keyboard cat',
-    resave: true, saveUninitialized:true
+    resave: true,
+    saveUninitialized: true,
 }));
 
 // // For Passport
@@ -51,56 +63,50 @@ app.use(session({
 
 // Routing
 app.set('trust proxy', true);
-// google login
-googleAuth(passport);
+
+googleAuth.initStrategy(passport);
 app.use(passport.initialize());
+app.use(googleAuth.router);
 
-app.get('/auth/google', function (a, b, next) {
-    next();
-});
+// app.get('/auth/google', function (a, b, next) {
+//     next();
+// });
 
-app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        failureRedirect: 'http://localhost:8080/',
-    }),
-    (req, res) => { 
-        req.session.token = req.user.token;
-        req.session.authType = 'google';
-        req.session.oauthId = req.user.profile.id;
-        req.session.oauthDisplayName = req.user.profile.displayName;
-        req.session.oauthProfile = req.user.profile;
+// app.get('/auth/google/callback',
+//     passport.authenticate('google', {
+//         failureRedirect: 'http://localhost:8080/',
+//     }),
+//     (req, res) => { 
+//         req.session.token = req.user.token;
+//         req.session.authType = 'google';
+//         req.session.oauthId = req.user.profile.id;
+//         req.session.oauthDisplayName = req.user.profile.displayName;
+//         req.session.oauthProfile = req.user.profile;
+//         req.session.save();
+        
+//         database.User.findOne({
+//             where: {
+//                 authType: req.session.authType,
+//                 oauthId: req.session.oauthId
+//             }
+//         }).then(data => {
+//             if (data) {
+//                 // User is already registered.
+//                 req.session.userId = data.id;
+//                 // Redirect to saved redirect url (or landing page if not set)
+//                 if (req.session.redirectUrl) {
+//                     res.redirect(req.session.redirectUrl);
+//                 } else {
+//                     res.redirect('/');
+//                 }
+//             } else {
+//                 // User is NOT registered.
+//                 res.redirect('/register');
+//             }
+//         });
+//     }
+// );
 
-        database.User.findOne({
-            where: {
-                authType: req.session.authType,
-                oauthId: req.session.oauthId
-            }
-        }).then(data => {
-            if (data) {
-                // User is already registered.
-                req.session.userId = data.id;
-                // Redirect to saved redirect url (or landing page if not set)
-                if (req.session.redirectUrl) {
-                    res.redirect(req.session.redirectUrl);
-                } else {
-                    res.redirect('/');
-                }
-            } else {
-                // User is NOT registered.
-                res.redirect('/register');
-            }
-        });
-    }
-);
-
-app.get('/auth/google/auth', function (req, res, next) {
-    if (!req.user) { // Not already logged in, probably okay to try to hit the oauth provider
-        return next();
-    }
-    res.redirect('/'); // Already logged in, send them where I want them after the callback anyway.
-}, passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/userinfo.profile']
-}));
 
 
 

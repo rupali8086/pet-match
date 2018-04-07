@@ -1,3 +1,17 @@
 <p>Here is where we list our events.</p>
-<p>Logged in users will have the option to create a <a href="/addEvent">new event listing.</a></p>
-<ul><li>With links to <a href="/eventDetails?id=1234">event details</a>.</li></ul>
+<p>Logged in users will have the option to create a
+    <a href="/addEvent">new event listing.</a>
+</p>
+<ul></ul>
+
+{{#each events}}
+<li>
+    <h2 style='display: inline'>{{name}}</h2>
+    <p>
+        location: {{city}}, {{state}}
+        <br> date: {{datestring}}
+        <br>
+        <a href='/eventDetails?id={{id}}'>Details</a>
+    </p>
+</li>
+{{/each}}
