@@ -8,6 +8,7 @@ var database = require('./models');
 
 var passport = require('passport');
 var googleAuth = require('./auth/googleAuth');
+var facebookAuth = require('./auth/facebookAuth');
 
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
@@ -50,7 +51,7 @@ app.use(session({
 
 // Routing
 app.set('trust proxy', true);
-
+// google login
 googleAuth(passport);
 app.use(passport.initialize());
 
@@ -100,6 +101,62 @@ app.get('/auth/google/auth', function (req, res, next) {
 }, passport.authenticate('google', {
     scope: ['https://www.googleapis.com/auth/userinfo.profile']
 }));
+
+
+
+
+
+// facebook
+facebookAuth(passport);
+app.use(passport.initialize());
+
+app.get('/auth/facebookAuth', function (a, b, next) {
+    next();
+});
+
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        failureRedirect: 'http://localhost:8080/',
+    }),
+    (req, res) => { 
+        req.session.token = req.user.token;
+        req.session.authType = 'facebook';
+        req.session.oauthId = req.user.profile.id;
+        req.session.oauthDisplayName = req.user.profile.displayName;
+        req.session.oauthProfile = req.user.profile;
+
+        database.User.findOne({
+            where: {
+                authType: req.session.authType,
+                oauthId: req.session.oauthId
+            }
+        }).then(data => {
+            if (data) {
+                // User is already registered.
+                req.session.userId = data.id;
+                // Redirect to saved redirect url (or landing page if not set)
+                if (req.session.redirectUrl) {
+                    res.redirect(req.session.redirectUrl);
+                } else {
+                    res.redirect('/');
+                }
+            } else {
+                // User is NOT registered.
+                res.redirect('/register');
+            }
+        });
+    }
+);
+
+app.get('/auth/facebook/auth', function (req, res, next) {
+    if (!req.user) { // Not already logged in, probably okay to try to hit the oauth provider
+        return next();
+    }
+    res.redirect('/'); // Already logged in, send them where I want them after the callback anyway.
+}, passport.authenticate('facebook', 
+    { scope : ['public_profile', 'email'] }
+    ));
+
 
 
 

@@ -2,11 +2,11 @@ module.exports = function(sequelize, Sequelize) {
  
     var Event = sequelize.define('Event', {
  
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-        },
+        // id: {
+        //     autoIncrement: true,
+        //     primaryKey: true,
+        //     type: Sequelize.INTEGER
+        // },
  
         date: {
             type: Sequelize.DATE,
