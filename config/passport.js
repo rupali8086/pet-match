@@ -1,4 +1,4 @@
-var LocalStrategy = require('passport-local').Strategy;
+/*var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
@@ -36,17 +36,17 @@ module.exports = function(passport) {
 	    			{
 
 	    				// mongo db
-	    				// var newUser = new User();
-	    				// newUser.facebook.id = profile.id;
-	    				// newUser.facebook.token = accessToken;
-	    				// newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-	    				// newUser.facebook.email = profile.emails[0].value;
-	    				// newUser.save(function(err){
-	    				// 	if(err)
-	    				// 		throw err;
-	    				// 	return done(null, newUser);
-	    				// })
-	    				// console.log(profile);
+	    				var newUser = new User();
+	    				newUser.facebook.id = profile.id;
+	    				newUser.facebook.token = accessToken;
+	    				newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+	    				newUser.facebook.email = profile.emails[0].value;
+	    				newUser.save(function(err){
+	    					if(err)
+	    						throw err;
+	    					return done(null, newUser);
+	    				})
+	    				console.log(profile);
 
 	    				// Mysql
 
@@ -107,4 +107,4 @@ module.exports = function(passport) {
 
 	));
 
-};
+};*/

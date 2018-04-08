@@ -1,5 +1,4 @@
 <!-- <p>This page is for the creation of new event entries.</p> !-->
-{{!-- date: { address1: { address2: { city: { state: { zip: { description: { link: { --}}
 
 
 <h1>Add an Event</h1>
@@ -31,16 +30,10 @@
             <input type="input" id="event-input-address2">
         </p>
     </label>
-    <label for="event-input-city">
-        <p>City</p>
+    <label for="event-input-city event-input-state event-input-zip">
+        <p>City, State, Zip</p>
         <input type="input" id="event-input-city">
-    </label>
-    <label for="event-input-state">
-        <p>State</p>
         <input type="input" id="event-input-state">
-    </label>
-    <label for="event-input-zip">
-        <p>ZIP</p>
         <input type="input" id="event-input-zip">
     </label>
     <label for="event-input-link">
@@ -52,7 +45,9 @@
         <textarea type="text" id="event-input-description"></textarea>
     </label>
 
-    <button type="submit" id="event-input-submit">Save Event</button>
+    <div>
+        <button type="submit" id="event-input-submit">Save Event</button>
+    </div>
 </form>
 {{else}}
 <p>You need to be logged in to create an event listing.</p>
@@ -61,9 +56,4 @@
 </p>
 {{/if}}
 
-<h2>Update Event</h2>
-<form id="updateEvent" class="button-size">
-    <input type="text" name="id" placeholder="id">
-    <textarea type="text" name="event"></textarea>
-    <button type="submit">Event</button>
 </form>

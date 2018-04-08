@@ -22,12 +22,40 @@ router.use('/*', (req, res, next) => {
     }
 })
 
-router.post('/login', (req, res) => {
-    res.status('501').end();
+// router.post('/login', (req, res) => {
+//     res.status('501').end();
+// });
+// router.post('/createAccount', (req, res) => {
+//     res.status('501').end();
+// });
+
+
+router.put('/profile', (req, res) => {
+    // update profile entry
+    
+    models.User.update({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        displayName: req.body.displayName,
+        bio: req.body.bio,
+        email: req.body.email || null,
+    }, {
+        where: {
+            id: req.session.userId,
+    }}).then(result => {
+        console.log(result);
+        res.json({
+            status: result[0] ? 'updated' : 'none',
+            affectedRows: result[0],
+        });
+    }).catch(e => {
+        res.json({
+            status: 'error',
+            error: e.message || e.msg || e || "unknown error",
+        });
+    });
 });
-router.post('/createAccount', (req, res) => {
-    res.status('501').end();
-});
+
 // Creates a new event listing
 // Expects: {userId, date, address, city, state, zip, description, RSVP}
 // Returns: 

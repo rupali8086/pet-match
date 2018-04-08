@@ -56,11 +56,12 @@ router.get('/eventDetails', (req, res) => { // ?id=_
     models.Event.findOne({ where: { id: id } })
         .then(result => {
             var event = result || { description: 'The event was not found.' };
-
+            
             res.hbsData.event = getEventHbsData((req.userInfo || {}).id, event);
             res.render('eventDetails', res.hbsData);
         }).catch(e => {
-
+            console.log(e);
+            res.status(500).end();
         });
 });
 function getEventHbsData(viewingUserId, eventModelInst) {
@@ -91,7 +92,29 @@ router.get('/addEvent', (req, res) => {
     res.render('addEvent', res.hbsData);
 });
 router.get('/profile', (req, res) => {
-    res.render('profile', res.hbsData);
+    if (req.userInfo) {
+        res.hbsData.userId = req.session.userId || 0;
+        res.hbsData.user = {
+            firstName: req.userInfo.firstName,
+            lastName: req.userInfo.lastName,
+            displayName: req.userInfo.displayName,
+            bio: req.userInfo.bio,
+            email: req.userInfo.email,
+            status: req.userInfo.status,
+        };
+
+        models.Event.findAll({ where: { UserId: req.session.userId || 0 } })
+            .then(events => {
+                
+                res.hbsData.events = events.map(e => ({ name: e.name, id: e.id }));
+                res.render('profile', res.hbsData);
+            }).catch(e => {
+                console.log(e);
+                res.status(500).end();
+            });
+    } else {
+        res.render('profile', res.hbsData);
+    }
 });
 router.get('/login', (req, res) => {
     res.render('login', res.hbsData);

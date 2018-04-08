@@ -1,4 +1,43 @@
-<p>Here we would query our apis and render the page when the API returns. We should consider pageinating the results.</p>
-<ul><li>
-    Each item links to a <a href="/rescueDetails?rescueId=1234">details</a> page.
-</li></ul>
+<form>
+    <label for='animalTypeInput'>
+        <p>Animal Type</p>
+        <select id='animalTypeInput'>
+            <option>Any</option>
+            <option>Dog</option>
+            <option>Cat</option>
+            <option>Bird</option>
+            <option>Horse</option>
+            <option>Barnyard</option>
+            <option>Reptile</option>
+            <option>Little Guy</option>
+        </select>
+        <input id='animal-type-other'>
+    </label>
+    <label for='animal-size'>
+        <p>Animal Size</p>
+        <select id='animal-size'>
+            <option>Any</option>
+            <option value='S'>Small</option>
+            <option value='M'>Medium</option>
+            <option value='L'>Large</option>
+            <option value='XL'>Huge</option>
+        </select>
+    </label>
+    <label for='animal-sex'>
+        <p>Animal Sex</p>
+        <select id='animal-sex'>
+            <option>Any</option>
+            <option value='M'>Male</option>
+            <option value='F'>Female</option>
+        </select>
+    </label>
+    <label for='animal-location'>
+        <p>Zip Code/City, State</p>
+        <input id='zipcodeInput'>
+    </label>
+
+    <button type='submit' id='submit'>Search</button>
+</form>
+
+<div id="apiView"></div>
+

@@ -1,3 +1,11 @@
+.header, .body-content {
+    padding-left: 2em;
+}
+
+.body-content {
+    padding-bottom: 2em;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -70,4 +78,131 @@ button {
     margin: 0 20px;
     /* padding: 0 20px; */
     height: 40px;
+}
+
+/*/////////////////  forms  //////////////////////////*/
+
+label p {
+    margin: 0.5em 0 0.5em 0;
+}
+
+input, textarea, select {
+    box-sizing: border-box;
+    padding: 4px;
+    border: 1px solid rgb(148, 157, 172);
+    border-radius: 3px;
+}
+
+input, select {
+    width: 180px;
+    margin: auto 10px;
+}
+
+
+textarea {
+    width: 400px;
+    height: 200px;
+    vertical-align: text-top;
+    margin: auto 10px;
+}
+
+/*/////////////////  addEvent.hbs  ///////////////////*/
+
+#event-input-state {
+    width: 4em;
+    margin: auto 0;
+}
+
+#event-input-zip {
+    width: 6em;
+}
+
+/*/////////////////  rescues.hbs  ////////////////////*/
+#animal-type {
+}
+
+#aminal-type-other {
+    width: 200px;
+}
+
+.rescue-thumb {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 10px;
+    float: left;
+}
+
+.rescue-image {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+.rescue-item {
+    box-sizing: border-box;
+    height: 170px;
+    overflow: hidden;
+    background: white;
+    margin: 1em 0;
+}
+
+.result-desc {
+    text-overflow: ellipsis;
+    height: 100px;
+}
+
+
+#shelter-details {
+    clear: both;
+    width: 500px;
+    border: 2px solid cornflowerblue;
+    padding: 0;
+}
+
+#shelter-details h4 {
+    margin: 0.5em;
+}
+
+p.shelter-detail-line {
+    margin-top: .1em;
+    margin-bottom: .1em;
+}
+
+.shelter-section {
+    /* margin-bottom: 1em; */
+    margin: 1em 0.5em;
+    border-left: 2px solid lightblue;
+    padding-left: 4px;
+}
+
+.shelter-header {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px;
+    width: 100%;
+    background: lightblue;
+    color: cornflowerblue;
+    margin-bottom: 0.5em;
+}
+
+/*/////////////////  profile.hbs  ////////////////////*/
+
+.profile-item {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    color: rgb(166, 182, 204);
+    position: relative;
+}
+
+.profile-label {
+    width: 200px;
+    display: inline-block;
+}
+
+.profile-value {
+    color: black;
+}
+
+input.profile-input {
+}
+
+textarea.profile-input {
 }

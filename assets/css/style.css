@@ -1,3 +1,5 @@
+/* So it's not empty */
+
 body {
 	background-color: #f3f3f3;
 }
@@ -9,21 +11,17 @@ body {
     border-bottom-width: 30px;
 }
 
-.appNameLink {
+.appName {
     color: #599f54;
     font-family: "Chicle", cursive;
     font-size: 60px;
-    padding-left: 5px;
+    padding: 30px;
 }
 
-.oauthPath .gLogin {
-	font-family: 'Muli', sans-serif;
-	font-weight: bold;
-}
-
-p {
-	font-family: 'Muli', sans-serif;
-}
+/*h1 {
+	color: #599f54;
+	font-family: "Chicle", cursive;
+}*/
 
 button {
 	background-color: #599f54;

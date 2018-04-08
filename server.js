@@ -11,7 +11,9 @@ var database = require('./models');
 
 var passport = require('passport');
 var googleAuth = require('./auth/googleAuth');
-var facebookAuth = require('./auth/facebookAuth');
+// var facebookAuth = require('./auth/facebookAuth');
+// var twitterAuth = require('./auth/twitterAuth');
+
 
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
@@ -64,9 +66,24 @@ app.use(session({
 // Routing
 app.set('trust proxy', true);
 
+
+// google
 googleAuth.initStrategy(passport);
 app.use(passport.initialize());
 app.use(googleAuth.router);
+
+
+// facebook
+// facebookAuth.initStrategy(passport);
+// app.use(passport.initialize());
+// app.use(facebookAuth.router);
+
+// twitter
+// twitterAuth.initStrategy(passport);
+// app.use(passport.initialize());
+// app.use(twitterAuth.router);
+
+
 
 // app.get('/auth/google', function (a, b, next) {
 //     next();
@@ -113,7 +130,7 @@ app.use(googleAuth.router);
 
 
 // facebook
-facebookAuth(passport);
+/*facebookAuth(passport);
 app.use(passport.initialize());
 
 app.get('/auth/facebookAuth', function (a, b, next) {
@@ -164,7 +181,7 @@ app.get('/auth/facebook/auth', function (req, res, next) {
     ));
 
 
-
+*/
 
 app.use(express.static('public'));
 app.use(httpRoutes);

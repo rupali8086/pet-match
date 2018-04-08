@@ -1,21 +1,10 @@
 module.exports = function(sequelize, Sequelize) {
  
     var Event = sequelize.define('Event', {
-<<<<<<< HEAD
- 
-        // id: {
-        //     autoIncrement: true,
-        //     primaryKey: true,
-        //     type: Sequelize.INTEGER
-        // },
- 
-=======
         name: {
             type: Sequelize.STRING,
             notEmpty: true
         },
-
->>>>>>> 5917ad4693bd06e181ad670c553aaf28d330b1eb
         date: {
             type: Sequelize.DATE,
             notEmpty: true

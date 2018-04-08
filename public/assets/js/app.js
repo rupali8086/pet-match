@@ -1,5 +1,5 @@
 var msgBoxFunction = null;
-
+var editingProfile = false;
 
 function displayError(title, message) {
     $('#modal-error-message').text(title);
@@ -62,6 +62,51 @@ $(document).ready(function () {
                 displayError('Error submitting event', response.error.message || response.error.msg || response.error || 'unknown error');
             }
         });
+    });
+
+    $('#profile-edit-button').on('click', function (e) {
+        if (editingProfile) {
+            var newData = {
+                firstName: $('#profile-firstName').val(),
+                lastName: $('#profile-lastName').val(),
+                displayName: $('#profile-displayName').val(),
+                bio: $('#profile-bio').val(),
+                email: $('#profile-email').val(),
+            };
+
+            $.ajax({
+                url: '/api/profile/', // + $('#hidden-id').val(),
+                method: 'PUT',
+                data: newData
+            }).then(function (result) {
+                if (result.status == 'updated') {
+                    window.location.reload();
+                } else {
+                    displayError('Profile Error', "Could not update the profile");
+                }
+                
+            });
+        } else {
+            $('.profile-value').each(function (index) {
+                var $element = $(this);
+
+                var edit;
+                if ($element.hasClass('profile-value-long')) {
+                    edit = $('<textarea>');
+                } else {
+                    edit = $('<input>');
+                }                    
+                    
+                edit.attr('id', $element.attr('id'));
+                edit.val($element.text());
+                edit.addClass('profile-input');
+
+                $element.replaceWith(edit);
+            });
+
+            editingProfile = true;
+            $('#profile-edit-button').text('Save Changes');
+        }
     });
 
     $('.event-edit-ok').on('click', function (e) {
