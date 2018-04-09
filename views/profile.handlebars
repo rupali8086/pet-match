@@ -9,13 +9,13 @@
     <p class='profile-item'><span class='profile-label'>Email: </span><span class='profile-value' id='profile-email'>{{user.email}}</span></p>
     <p class='profile-item'><span class='profile-label'>Status: </span><span class='profile-value-noedit' id='profile-status'>{{user.status}}</span></p>
 
-    <button id="profile-edit-button">Edit Profile</button>
+    <button id="profile-edit-button" class="uk-button uk-button-primary">Edit Profile</button>
 {{else}}
     <p>Please log in to view/edit your profile.</p>
 {{/if}}
 
 <hr>
-    <p>Your event listings:</p>
+    <h3>Your event listings</h3>
 
     <ul>
         {{#each events}}

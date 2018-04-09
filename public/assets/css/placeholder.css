@@ -125,10 +125,20 @@ textarea {
     width: 200px;
 }
 
+.rescue-label {
+    display: inline-block;
+}
+
+.rescue-search {
+    text-align: center;
+}
+
 .rescue-thumb {
-    max-width: 150px;
-    max-height: 150px;
-    margin: 10px;
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+    margin: 0;
+    margin-right: 10px;
     float: left;
 }
 
@@ -138,23 +148,52 @@ textarea {
 }
 .rescue-item {
     box-sizing: border-box;
-    height: 170px;
+    height: 250px;
     overflow: hidden;
     background: white;
     margin: 1em 0;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .result-desc {
     text-overflow: ellipsis;
     height: 100px;
+    overflow: hidden;
+    white-space: pre-wrap;
+    margin: 0;
 }
 
+.result-desc-long {
+    max-width: 1000px;
+}
+
+.result-desc-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100px;
+    box-shadow: inset -7px -3px 20px 0px white;
+}
+
+.rescue-desc-shadow {
+    -webkit-box-shadow: inset 0px -15px 10px 0px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 0px -15px 10px 0px rgba(255, 255, 255, 1);
+    box-shadow: inset 0px -15px 10px 0px rgba(255, 255, 255, 1);
+    height: 100px;
+    width: 100%;
+    z-index: 100;
+    position:absolute;
+    left: 200px;
+}
 
 #shelter-details {
     clear: both;
-    width: 500px;
-    border: 2px solid cornflowerblue;
-    padding: 0;
+    /* width: 500px; */
+    /* border: 2px solid cornflowerblue; */
+    /* padding: 0; */
+    max-width: 800px;
 }
 
 #shelter-details h4 {
@@ -205,4 +244,5 @@ input.profile-input {
 }
 
 textarea.profile-input {
+    height: 150px;
 }

@@ -33,7 +33,8 @@ if ($('#rescue-details').length) {
             url: queryURL,
             jsonp: "callback",
             dataType: "jsonp",
-            method: "GET"
+            method: "GET",
+            contentType: "text/json;charset=utf-8"
         }).then(function (results) {
             console.log("Success!");
             console.log(results);
@@ -42,13 +43,17 @@ if ($('#rescue-details').length) {
             results = results.petfinder.pet;
 
             // variable for new div that will hold all of the information we want to display for the animal
-            var animalDiv = $("<div>").addClass("animal rescue-info");
+            var animalDiv = $("<div>").addClass("animal rescue-info ");
             // variable that holds the animals picture
             var newImage = $("<img>").attr("src", results.media.photos.photo[3].$t).addClass('rescue-image');
             // variable to hold the animals name, sets it as an h3
             var aniName = $("<h1>").text(results.name.$t);
             // variable that holds the animals description provided by the shelter
-            var info = $("<p>").text(results.description.$t).addClass('result-desc-long');
+            var parts = results.description.$t.split('\n');
+            var info = $("<div>").addClass('result-desc-long');
+            parts.forEach(function(part) {
+                info.append($("<p>").text(part));
+            });
             // variable to hold the unique ID for the shelter the animal comes from, will be used in another api request
             var shelter = results.shelterId.$t;
 
@@ -89,14 +94,18 @@ if ($('#rescue-details').length) {
             contactDiv.append(email).append(phone);
 
             var shelterDiv = $("<div>").addClass("shelter");
-            var locale = $("<h4>").text(name);
+            var locale = $("<h4>").text(name).addClass('uk-card-header');
 
-            var header = $("<p>").addClass("shelter-header").text("Shelter");
+            var shelterBody = $("<div class='uk-card-body uk-padding-small'>");
+            shelterBody.append(fullAddress);
+            shelterBody.append(contactDiv);
 
-            shelterDiv.append(header);
+            
+            // var header = $("<p>").addClass("shelter-header").text("Shelter");
+
+            // shelterDiv.append(header);
             shelterDiv.append(locale);
-            shelterDiv.append(fullAddress);
-            shelterDiv.append(contactDiv);
+            shelterDiv.append(shelterBody);
 
             $("#shelter-details").append(shelterDiv);
         }).catch(function (error) {
@@ -139,7 +148,8 @@ $("#submit").on("click", function () {
             url: queryURL,
             jsonp: "callback",
             dataType: "jsonp",
-            method: "GET"
+            method: "GET",
+            contentType: "text/json;charset=utf-8"
         }).then(function (response) {
             $("#apiView").empty();
 
@@ -152,7 +162,7 @@ $("#submit").on("click", function () {
                 var results = response.petfinder.pets.pet[i];
 
                 // variable for new div that will hold all of the information we want to display for the animal
-                var animalDiv = $("<div>").addClass("animal rescue-item");
+                var animalDiv = $("<div>").addClass("animal rescue-item uk-card uk-card-default uk-card-body ");
                 // variable that holds the animals picture
                 var newImage = $("<img>").attr("src", results.media.photos.photo[3].$t).addClass('rescue-thumb');
                 var aniNameLink = $("<a>").attr('href', '/rescueDetails?id=' + results.id.$t).text(results.name.$t)
@@ -160,12 +170,14 @@ $("#submit").on("click", function () {
                 var aniName = $("<h3>").append(aniNameLink);
                 // variable that holds the animals description provided by the shelter
                 var info = $("<p>").text(results.description.$t).addClass('result-desc');
+                var infoShadow = $("<div>").addClass("rescue-desc-shadow");
                 // variable to hold the unique ID for the shelter the animal comes from, will be used in another api request
                 var shelter = results.shelterId.$t;
 
                 // div appends our variables
                 animalDiv.append(newImage);
                 animalDiv.append(aniName);
+                animalDiv.append(infoShadow);
                 animalDiv.append(info);
 
                 // prepends the info that is already in animalDiv to our html page
@@ -193,12 +205,17 @@ $("#submit").on("click", function () {
 
                 var phone = $("<p>").text(response.petfinder.shelter.phone.$t);
 
-                var shelterDiv = $("<div>").addClass("shelter");
+                var shelterDiv = $("<div>").addClass("shelter uk-card");
                 var locale = $("<h4>").text("Name of Shelter: " + name);
+                locale.addClass('uk-card-header');
+
+                var details = $('<div>').addClass("uk-card-body");
+                details.append(fullAddress).append(phone);
 
                 shelterDiv.append(locale);
-                shelterDiv.append(fullAddress);
-                shelterDiv.append(phone);
+                // shelterDiv.append(fullAddress);
+                // shelterDiv.append(phone);
+                shelterDiv.append(details);
 
                 $(".animal").eq(index).append(shelterDiv);
             });

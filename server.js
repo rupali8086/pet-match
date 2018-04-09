@@ -127,6 +127,7 @@ app.use(googleAuth.router);
 
 
 
+<<<<<<< HEAD
 
 
 // facebook
@@ -184,12 +185,13 @@ app.get('/auth/facebook/auth', function (req, res, next) {
 */
 
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(httpRoutes);
 app.use('/api', apiRoutes);
 
 //// Start Server ////////////////////////////////////
 
-database.sequelize.sync({ force: true }).then(function () {
+database.sequelize.sync({ force: false }).then(function () {
     console.log("Database connected.")
     // for testing purposes
     database.User.create({ firstname: "tom", lastname: "my", username: "tommy", about: "sup", email: "a@b.com", password: "dog", last_login: Date(), status: 'active' }).then(r => console.log(r)).catch(e => console.log(e));
