@@ -92,11 +92,11 @@ module.exports = {
                                 res.redirect(req.session.afterLogin || '/');
                             })
                         }).catch(e => {
-                            res.status(500).end();
+                             res.status(500).end();
                         });
                     }
                 }).catch(e => {
-                    res.status(500).end();
+                        res.status(500).end();
                 });
             }
         );
