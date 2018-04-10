@@ -103,6 +103,7 @@ router.put('/editInfo/:id', (req, res) => {
     // update event
     
     models.Event.update({
+        name: req.body.name,
         date: req.body.date,
         address1: req.body.address1,
         address2: req.body.address2,

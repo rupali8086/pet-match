@@ -1,6 +1,6 @@
 var models = require('../models');
-
 var express = require('express');
+var formatDate = require('../utility/formatDate');
 
 var router = express.Router();
 
@@ -55,9 +55,13 @@ router.get('/eventDetails', (req, res) => { // ?id=_
     var id = req.query.id || 0;
     models.Event.findOne({ where: { id: id } })
         .then(result => {
-            var event = result || { description: 'The event was not found.' };
-            
-            res.hbsData.event = getEventHbsData((req.userInfo || {}).id, event);
+            // var event = result || { description: 'The event was not found.' };
+            if (result) {
+                res.hbsData.event = getEventHbsData((req.userInfo || {}).id, result);
+            } else {
+                res.hbsData.event = { description: 'The event was not found.' };
+            }
+            // res.hbsData.event = getEventHbsData((req.userInfo || {}).id, event);
             res.render('eventDetails', res.hbsData);
         }).catch(e => {
             console.log(e);
@@ -69,7 +73,7 @@ function getEventHbsData(viewingUserId, eventModelInst) {
         id: eventModelInst.id,
         owner: viewingUserId == eventModelInst.UserId,
         name: eventModelInst.name || '',
-        datestring: getDatetimeInputString(eventModelInst.date),
+        datestring: formatDate(eventModelInst.date),
         date: getDatetimeInputString(eventModelInst.date),
         address1: eventModelInst.address1 || '',
         address2: eventModelInst.address2 || '',
@@ -105,7 +109,7 @@ router.get('/profile', (req, res) => {
 
         models.Event.findAll({ where: { UserId: req.session.userId || 0 } })
             .then(events => {
-                
+
                 res.hbsData.events = events.map(e => ({ name: e.name, id: e.id }));
                 res.render('profile', res.hbsData);
             }).catch(e => {

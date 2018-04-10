@@ -38,7 +38,7 @@ module.exports = {
 
         router.get('/auth/google/callback',
             passportInstance.authenticate('google', {
-                failureRedirect: 'http://localhost:8080/',
+                failureRedirect: '/',
             }),
             (req, res) => {
                 req.session.token = req.user.token;

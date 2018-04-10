@@ -2,7 +2,7 @@
 var express = require('express');
 var fs = require('fs');
 var rimraf = require('rimraf');
-var dotenv = require('dotenv').config();
+if (process.env.enviro == 'heroku'){ require('dotenv').config(); }
 var path = require('path');
 var handlebars = require('express-handlebars');
 var httpRoutes = require('./routes/httpRoutes');
@@ -127,7 +127,7 @@ app.use(googleAuth.router);
 
 
 
-<<<<<<< HEAD
+
 
 
 // facebook
@@ -194,7 +194,7 @@ app.use('/api', apiRoutes);
 database.sequelize.sync({ force: false }).then(function () {
     console.log("Database connected.")
     // for testing purposes
-    database.User.create({ firstname: "tom", lastname: "my", username: "tommy", about: "sup", email: "a@b.com", password: "dog", last_login: Date(), status: 'active' }).then(r => console.log(r)).catch(e => console.log(e));
+    // database.User.create({ firstname: "tom", lastname: "my", username: "tommy", about: "sup", email: "a@b.com", password: "dog", last_login: Date(), status: 'active' }).then(r => console.log(r)).catch(e => console.log(e));
 
 }).catch(err => {
     console.log("Failed to connect to database.", err);
