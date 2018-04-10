@@ -2,7 +2,7 @@
 var express = require('express');
 var fs = require('fs');
 var rimraf = require('rimraf');
-if (process.env.enviro == 'heroku'){ require('dotenv').config(); }
+if (process.env.enviro != 'heroku'){ require('dotenv').config(); }
 var path = require('path');
 var handlebars = require('express-handlebars');
 var httpRoutes = require('./routes/httpRoutes');

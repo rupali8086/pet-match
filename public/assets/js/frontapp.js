@@ -49,7 +49,7 @@ if ($('#rescue-details').length) {
             // variable to hold the animals name, sets it as an h3
             var aniName = $("<h1>").text(results.name.$t);
             // variable that holds the animals description provided by the shelter
-            var parts = results.description.$t.split('\n');
+            var parts = (results.description.$t || "").split('\n');
             var info = $("<div>").addClass('result-desc-long');
             parts.forEach(function(part) {
                 info.append($("<p>").text(part));
@@ -123,6 +123,10 @@ $("#submit").on("click", function () {
     // variables that hold values entered by user. based on what search parameters the user enters
     var zip = $("#zipcodeInput").val().trim().toLowerCase();
     zip = zip.split(',').join('');
+    if (zip.trim().length == 0) {
+        displayError('Location Required', "Please specify a zip code or a city and state.");
+        return;
+    }
     zip = zip ? "&location=" + zip : '';
 
     var animal = $("#animalTypeInput").val().trim().toLowerCase();

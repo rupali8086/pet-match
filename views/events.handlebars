@@ -1,12 +1,18 @@
-<p>Here is where we list our events.</p>
-<p>Logged in users will have the option to create a
-    <a href="/addEvent">new event listing.</a>
-</p>
+<div class="text-area-center container">
+
+{{#if logged}}
+    <a>
+        <a href="/addEvent"><button>Add an Event</button></a>
+    </p>
+{{else}}
+    <p>Log in to add an event listing.</p>
+{{/if}}
 <ul></ul>
 
 {{#each events}}
+<div class="events-container">
 <li>
-    <h2 style='display: inline'>{{name}}</h2>
+    <h2 class="headline" style='display: inline'>{{name}}</h2>
     <p>
         location: {{city}}, {{state}}
         <br> date: {{datestring}}
@@ -15,3 +21,6 @@
     </p>
 </li>
 {{/each}}
+</div>
+
+</div>

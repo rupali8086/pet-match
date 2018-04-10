@@ -1,21 +1,23 @@
-<h2>{{displayName}}</h2>
+<div class="text-area-center container">
+
+<h2 class="headline-alt">{{displayName}}</h2>
 
 {{#if user}}
     <input type='hidden' id='hidden-id' value='{{userId}}'>
     <p class='profile-item'><span class='profile-label'>First Name:</span> <span class='profile-value' id='profile-firstName'>{{user.firstName}}</span></p>
     <p class='profile-item'><span class='profile-label'>Last Name:</span> <span class='profile-value' id='profile-lastName'>{{user.lastName}}</span></p>
     <p class='profile-item'><span class='profile-label'>Display Name:</span> <span class='profile-value' id='profile-displayName'>{{user.displayName}}</span></p>
-    <p class='profile-item'><span class='profile-label'>About: </span><span class='profile-value profile-value-long' id='profile-bio'>{{user.bio}}</span></p>
     <p class='profile-item'><span class='profile-label'>Email: </span><span class='profile-value' id='profile-email'>{{user.email}}</span></p>
+    <p class='profile-item'><span class='profile-label'>About: </span></p><p class='profile-value profile-value-long' id='profile-bio' style="margin: 1em; color: #888;">{{user.bio}} <br> </p>
     <p class='profile-item'><span class='profile-label'>Status: </span><span class='profile-value-noedit' id='profile-status'>{{user.status}}</span></p>
 
     <button id="profile-edit-button" class="uk-button uk-button-primary">Edit Profile</button>
 {{else}}
-    <p>Please log in to view/edit your profile.</p>
+    <p>Please <span class="login-text"><a href="">log in</a></span> to view/edit your profile.</p>
 {{/if}}
 
 <hr>
-    <h3>Your event listings</h3>
+    <h3 class="headline-alt">Your event listings</h3>
 
     <ul>
         {{#each events}}
@@ -24,4 +26,6 @@
             <li>You have not created any event listings.</li>
         {{/each}}
     </ul>
+
+</div>
 

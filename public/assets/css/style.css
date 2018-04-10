@@ -1,30 +1,202 @@
+@import url("reset.css");
+
+li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+div.text-area-center.container {
+    height: unset;
+}
 body {
 	background-color: #f3f3f3;
 }
 
+#event-input-submit {
+    margin-top: 1em;
+}
+
+html {
+    background-repeat: repeat;
+    background-image: url(https://d17fnq9dkz9hgj.cloudfront.net/uploads/2017/06/why-are-dogs-scared-of-firework-header.jpg); 
+    background-attachment: fixed;
+    background-position: 0px 200px;
+    background-size: cover;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #c4e8f8;
+    color: #599f54;
+    display: inline-block;
+    border-top: solid;
+    border-color: #599f54;
+    border-width: 5px;
+    font-family: "Muli", sans-serif;
+}
+.body-content {
+	/* background-image : url("https://d17fnq9dkz9hgj.cloudfront.net/uploads/2017/06/why-are-dogs-scared-of-firework-header.jpg"); */
+    /* background-repeat: repeat;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/59/4_months_old_white_golden_retriever.JPG); 
+    background-attachment: fixed; */
+}
+
 .header {
 	background-color: #c4e8f8;
-    border-bottom-color: #f3f3f3;
+	height: 220px;
+    border-bottom-color: #599f54;
     border-bottom-style: solid;
-    border-bottom-width: 30px;
+    border-bottom-width: 5px;
 }
 
 .appNameLink {
     color: #599f54;
     font-family: "Chicle", cursive;
     font-size: 60px;
-    padding-left: 5px;
+    margin-left: 50px;
+}
+
+.navLinks {
+	float: right;
+	display: inline;
+	font-family: 'Boogaloo', cursive;
+	margin: 0px 50px 0px 50px;
 }
 
 .oauthPath .gLogin {
-	font-family: 'Muli', sans-serif;
+	font-family: 'Boogaloo', cursive;
 	font-weight: bold;
+	float: right;
+	font-size: 30px;
+}
+
+.wrapper {
+	margin-left: 40px;
+}
+
+.textarea1 {
+	width: 40%;
+	background-color: #c4e8f8;
+	font-family: 'Muli', sans-serif;
+	padding: 50px;
+	float: right;
+	position: absolute;
+	margin-left: 400px;
+}
+
+.textarea2 {
+	background-color: #c4e8f8;
+	font-family: 'Muli', sans-serif;
+	padding: 50px;
+	float: left;
+	position: absolute;
+}
+
+
+#link-one {
+	
+}
+
+#link-two {
+
+}
+
+#link-three {
+
 }
 
 p {
 	font-family: 'Muli', sans-serif;
 }
 
-button {
+.headline {
+	font-family: "Chicle", cursive;
+	color: #599f54;
+}
+
+.headline-alt {
+	font-family: "Boogaloo", cursive;
+	color: #599f54;
+}
+
+.modal-content .modal-content-error {
+	background-color: aliceblue;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1b2a31ad;
+    z-index: 100;
+}
+
+.text-area-center {
+	width: 40%;
+	background-color: #c4e8f8;
+	font-family: 'Muli', sans-serif;
+	padding: 50px;
+	position: absolute;
+    height: 200px;
+    width: 400px;
+    margin: -100px 0 0 -200px;
+    top: 50%;
+    left: 50%;
+}
+
+.text-area-1 {
+
+}
+
+.text-area2 {
+	width: 40%;
+	background-color: #c4e8f8;
+	font-family: 'Muli', sans-serif;
+	padding: 50px;
+}
+
+#message-cancel {
 	background-color: #599f54;
+}
+
+#message-ok {
+	background-color: #599f54;
+}
+
+#adoption-form {
+	/* height: 350px; */
+	text-align: center;
+}
+
+.form-option {
+	font-family: 'Muli', sans-serif;
+	font-weight: bold;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #c4e8f8;
+    color: #599f54;
+    display: inline-block;
+    border-top: solid;
+    border-color: #599f54;
+    border-width: 5px;
+}
+
+
+@media only screen and (max-width:620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width:100%;
+  }
 }

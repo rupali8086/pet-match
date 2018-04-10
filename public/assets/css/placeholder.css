@@ -1,5 +1,7 @@
 .header, .body-content {
     padding-left: 2em;
+    border-style: solid;
+    border-color: #c4e8f8;
 }
 
 .body-content {
@@ -13,7 +15,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.65);
+    background-color: #0000008c;
     z-index: 100;
 }
 
@@ -22,7 +24,7 @@
     position: relative;
     width: 800px;
     max-width: 90%;
-    background: white;
+    background-color: #c4e8f8;
     height: 400px;
     max-height: 90%;
     margin: 3em auto 0 auto;
@@ -52,10 +54,10 @@ button {
     cursor: pointer;
     box-shadow: 4px 3px 8px #00000021;
 }
-/* #error-ok, #message-ok { */
-.modal-button {    
-    /* position: absolute; */
-    /* bottom: 20px; */
+ #error-ok, #message-ok { 
+/* .modal-button {     */
+     position: absolute; 
+     bottom: 20px; 
     border: 1px solid #0000005c;
     background: white;
     border-radius: 8px;
@@ -74,11 +76,14 @@ button {
     position:absolute;
     bottom: 20px;
     width: 770px;
+    max-width: 80%;
     text-align: right;
     margin: 0 20px;
     /* padding: 0 20px; */
     height: 40px;
 }
+/* =======
+} */
 
 /*/////////////////  forms  //////////////////////////*/
 
@@ -117,7 +122,7 @@ textarea {
     width: 6em;
 }
 
-/*/////////////////  rescues.hbs  ////////////////////*/
+/*////////////////  rescues.hbs  ///////////////////*/
 #animal-type {
 }
 
@@ -145,6 +150,9 @@ textarea {
 .rescue-image {
     float: left;
     margin: 0 1em 1em 0;
+    width: 400px;
+    margin-left: 0;
+    margin-right: 0;
 }
 .rescue-item {
     box-sizing: border-box;
@@ -159,7 +167,7 @@ textarea {
 
 .result-desc {
     text-overflow: ellipsis;
-    height: 100px;
+    height: 130px;
     overflow: hidden;
     white-space: pre-wrap;
     margin: 0;
@@ -167,6 +175,10 @@ textarea {
 
 .result-desc-long {
     max-width: 1000px;
+}
+
+.result-desc-long p {
+    white-space: pre-wrap;
 }
 
 .result-desc-container {
@@ -181,11 +193,11 @@ textarea {
     -webkit-box-shadow: inset 0px -15px 10px 0px rgba(255, 255, 255, 1);
     -moz-box-shadow: inset 0px -15px 10px 0px rgba(255, 255, 255, 1);
     box-shadow: inset 0px -15px 10px 0px rgba(255, 255, 255, 1);
-    height: 100px;
+    height: 130px;
     width: 100%;
     z-index: 100;
     position:absolute;
-    left: 200px;
+    left: 190px;
 }
 
 #shelter-details {

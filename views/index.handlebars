@@ -1,4 +1,14 @@
-<p class="indexP">This is the landing page.</p>
-<p><a href="/login">Log in</a> or <a href="/register">register.</a></p>
-<p>Browse <a href="/rescues">rescues</a> or <a href="/events">events</a>.</p>
-<p>Logged in users can view their own <a href="/profile">profile</a>.</p>
+<div class="text-area-center container">
+	<h1 class="headline">Hello!</h1>
+<p class="indexP">Welcome to PetMatch!</p>
+<p></p>
+<!-- <p><a href="/login">Log in</a> or <a href="/register">register.</a></p> -->
+<p>Browse <a href="/rescues">adoptions</a> or <a href="/events">events</a>.</p>
+
+{{#if logged}}
+<p>You can also <a href="/profile">view or edit your profile</a>.</p>
+{{else}}
+<p>Log in to edit your profile and add event listings.</p>
+{{/if}}
+
+</div>
